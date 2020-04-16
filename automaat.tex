@@ -2,8 +2,8 @@
 \KOMAoptions{BCOR=10mm, DIV=15}
 
 %-------------------------------------------------------------------------------
-\input{sub/docstijl}
-\input{sub/src-code}
+\input{../sub/docstijl}
+\input{../sub/src-code}
 \lstset{otherkeywords={s08,s16,s32,s64,u08,u16,u32,u64}}
 \lstset{keywordsprefix={0x000}}% opdracht begint met letter, eerste 0 niet mee!
 
@@ -15,10 +15,10 @@
 \renewcommand{\logo}{\tikz[scale=0.1,baseline=-1.5] \qfnpcb;}
 % extra voor titelblad:
 %-------------------------------------------------------------------------------
-\def\date{27 maart 2020}
-\renewcommand\Auteur{\date\\Robert van Lierop\\\texttt{rvl minus techniek at hetnet dot nl}}
-\renewcommand\Doctype{voorbeeld}
-\renewcommand{\logovoor}{\tikz[scale=0.2,baseline=-1.5] \qfnchipa;}
+%\def\date{27 maart 2020}
+%\renewcommand\Auteur{\date\\Robert van Lierop\\\texttt{rvl minus techniek at hetnet dot nl}}
+%\renewcommand\Doctype{voorbeeld}
+%\renewcommand{\logovoor}{\tikz[scale=0.2,baseline=-1.5] \qfnchipa;}
 
 \renewenvironment{description}[1][1em]%standaardwaarde
  {\list{}{\labelwidth=0pt \leftmargin=#1
@@ -36,10 +36,10 @@
 \section{Inleiding}
 Een toestandsautomaat vormt een systeembeschrijving waarbij een systeem
  telkens vanuit een toestand naar een andere toestand kan gaan bij het optreden
- van een bepaalde gebeurtenis.
+ van een bepaalde invoergebeurtenis.
 
 In het meest eenvoudige geval betekent het dat de verwerkingseenheid van
- het systeem niets doet tenzij er een gebeurtenis optreedt.
+ het systeem niets doet tenzij er een invoergebeurtenis optreedt.
 
 Als voorbeeld wordt hiervoor een lamp genomen, die met behulp van een
  terugverende drukknop geschakeld kan worden, waarbij het programma denkbeeldig
@@ -47,8 +47,8 @@ Als voorbeeld wordt hiervoor een lamp genomen, die met behulp van een
 
 Als gebeurtenissen zien we hierbij:
 \begin{description}[1.2em]
-\item[in] de knop wordt ingedrukt tegen zijn veerduk in
-\item[los] de knop wordt losgelaten en veert terug
+\item[in] de knop wordt ingedrukt tegen zijn veerdruk in
+\item[los] de knop wordt losgelaten en veert terug uit
 \end{description}
 
 De onderscheiden stabiele toestanden zijn:
@@ -62,7 +62,7 @@ We willen dat de lamp `natuurlijk' reageert, dus aan op indrukken als de lamp
  aantal milliseconden contactdender van de drukknop onderdrukken.
  Daarvoor is het handig om 2 overgangstoestanden toe te voegen:
 \begin{description}
-\item[aan1] de lamp was uit en de knop ingedrukt
+\item[uit1] de lamp was uit en de knop ingedrukt
 \item[aan1] de lamp was aan en de knop ingedrukt
 \end{description}
 
@@ -87,10 +87,11 @@ We willen dat de lamp `natuurlijk' reageert, dus aan op indrukken als de lamp
 \end{center}
 
 Het voorbeeld is te programmeren in een 4 $\times$ 2 beslismatrix
- met rijen voor de toestanden en kolommen voor de gebeurtenissen.
-De matrix wordt ingevuld met de nieuwe toestand, eventueel voorafgegaan
- door een komma met daarvoor schuingedrukt de te nemen actie op de
- lampuitgang, en een minteken voor een combinatie waar niets wijzigt:\\
+ met rijen voor de toestanden en kolommen voor de optredende invoer.
+De matrix wordt ingevuld met een minteken voor een combinatie waar
+ niets wijzigt, of de nieuwe toestand voor de combinatie, eventueel
+ voorafgegaan door, schuingedrukt, de te nemen actie op de lampuitgang,
+ en een komma als scheidingsteken:\\
  
 \begin{center}
 \begin{tabular}{|l|c|c|}\hline
@@ -182,6 +183,9 @@ De bijbehorende matrix met mogelijke implementatiefuncties ernaast wordt:\\
 \item[l1()] \lstinline[language=C]${return L1;}$
 \end{itemize}
 \end{minipage}
+
+\vspace{2ex}
+In een echt project kan ik bovenstaande optimaliseren en met meer functionaliteit uitbreiden.
 
 %\begin{center}
 %\end{center}
